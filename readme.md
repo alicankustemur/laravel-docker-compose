@@ -1,3 +1,18 @@
+PHP7.2/Laravel + Redis + MySQL + Nginx
+```
+git clone git@github.com:Foolyou/laravel-docker-compose.git YOUR_PROJECT
+cd YOUR_PROJECT
+docker run --rm -v $(pwd):/app composer install
+cd ..
+sudo chown -R $USER YOUR_PROJECT
+ln -s .env.example .env
+docker-compose up -d
+docker-compose exec app php artisan key:generate
+docker-compose exec app php artisan config:cache
+docker-compose exec app php artisan migrate
+```
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
