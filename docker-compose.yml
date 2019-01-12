@@ -79,6 +79,24 @@ services:
       PMA_HOST: db
     networks:
       - app-network
+  
+  #mongodb
+  mongodb:
+    image: mongo:4.1.6-xenial
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+      - MONGO_LOG_DIR=/dev/null
+      - MONGODB_USER="laravel"
+      - MONGODB_PASS="laravel"
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - app-network
+    command: mongod --smallfiles --logpath=/dev/null # --quiet
 
 #Docker Networks
 networks:
@@ -89,4 +107,6 @@ volumes:
   dbdata:
     driver: local
   redisdata:
+    driver: local
+  mongodata:
     driver: local
