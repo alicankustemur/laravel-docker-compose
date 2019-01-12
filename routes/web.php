@@ -11,6 +11,15 @@
 |
 */
 
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+
+class User extends Eloquent {}
+
 Route::get('/', function () {
-    return view('welcome');
+    $user = new User;
+    $user->name = 'hello';
+    $user->gender = 'female';
+    $user->save();
+    var_dump(User::take(5)->get());
+    var_dump(\DB::collection('users')->get());
 });

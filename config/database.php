@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'mongodb'),
 
     /*
     |--------------------------------------------------------------------------
@@ -82,6 +82,12 @@ return [
             'prefix_indexes' => true,
         ],
 
+        "mongodb" => [
+            "driver" => "mongodb",
+            "host" => env("DB_HOST", "mongodb"),
+            "port" => env("DB_PORT", "27017"),
+            "database" => env("DB_DATABASE", "laravel"),
+        ],
     ],
 
     /*
@@ -126,6 +132,5 @@ return [
             'database' => env('REDIS_CACHE_DB', 1),
         ],
 
-    ],
-
+    ]
 ];

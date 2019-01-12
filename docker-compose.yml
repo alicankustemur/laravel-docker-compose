@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "80:80"
+      - "8081:80"
       - "443:443"
     volumes:
       - ./:/var/www
@@ -87,16 +87,10 @@ services:
     restart: unless-stopped
     ports:
       - "27017:27017"
-    environment:
-      - MONGO_DATA_DIR=/data/db
-      - MONGO_LOG_DIR=/dev/null
-      - MONGODB_USER="laravel"
-      - MONGODB_PASS="laravel"
     volumes:
       - mongodata:/data/db
     networks:
       - app-network
-    command: mongod --smallfiles --logpath=/dev/null # --quiet
 
 #Docker Networks
 networks:
