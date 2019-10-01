@@ -19,7 +19,6 @@ services:
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
       - app-network
-      - common
     logging:
       driver: gelf
       options:
@@ -39,7 +38,6 @@ services:
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - app-network
-      - common
 
   #MySQL Service
   db:
@@ -59,7 +57,6 @@ services:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
-      - common
 
   #Redis Service
   redis:
@@ -74,7 +71,6 @@ services:
       - redisdata:/data
     networks:
       - app-network
-      - common
 
   #phpmyadmin
   phpmyadmin:
@@ -87,8 +83,7 @@ services:
       PMA_HOST: db
     networks:
       - app-network
-      - common
-
+  
   #mongodb
   mongodb:
     image: mongo:4.1.6-xenial
@@ -100,16 +95,12 @@ services:
       - mongodata:/data/db
     networks:
       - app-network
-      - common
 
-
+#Docker Networks
 networks:
   app-network:
     driver: bridge
-  common:
-    external:
-      name: common  
-
+#Volumes
 volumes:
   dbdata:
     driver: local
@@ -117,5 +108,3 @@ volumes:
     driver: local
   mongodata:
     driver: local
-
-

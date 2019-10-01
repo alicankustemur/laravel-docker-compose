@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'default' => env('LOG_CHANNEL', 'stack'),
+    'default' => 'stderr',
 
     /*
     |--------------------------------------------------------------------------
@@ -70,12 +70,19 @@ return [
             ],
         ],
 
-        'stderr' => [
+	'stderr' => [
+	    'level' => 'info',
             'driver' => 'monolog',
             'handler' => StreamHandler::class,
             'with' => [
                 'stream' => 'php://stderr',
-            ],
+	    ],
+    'formatter' => Monolog\Formatter\JsonFormatter::class,
+    'formatter_with' => [
+        'format' => "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n",
+    ],
+
+
         ],
 
         'syslog' => [

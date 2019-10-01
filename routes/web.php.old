@@ -12,12 +12,12 @@
 */
 
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use App\Http\Controllers\RandomString;
 
 class User extends Eloquent {}
 
 Route::get('/', function () {
-	Log::error('my-error');
-	Log::info('bıdı bıdı');
-	throw new Exception('error testing');
+	Log::warning(RandomString::get());
+	//throw new Exception('TestLog Error');
 
 });
